@@ -1,23 +1,17 @@
 import initialData from '../data/initialCvInfo'
 
-function Field({ label, path, handleChange }) {
-  const initial = initialData[path.title][path.fieldIndex][path.label]
-
+export default function Form({ data, handleChange }) {
   return (
-    <div>
-      <label>
-        {label}
-        <input
-          type="text"
-          placeholder={initial}
-          onChange={(e) =>
-            handleChange(e.target.value === '' ? initial : e.target.value, {
-              ...path,
-            })
-          }
+    <form>
+      {Object.entries(data).map(([title, fields]) => (
+        <Section
+          key={title}
+          title={title}
+          fields={fields}
+          handleChange={handleChange}
         />
-      </label>
-    </div>
+      ))}
+    </form>
   )
 }
 
@@ -44,17 +38,23 @@ function Section({ title, fields, handleChange }) {
   )
 }
 
-export default function Form({ data, handleChange }) {
+function Field({ label, path, handleChange }) {
+  const initial = initialData[path.title][path.fieldIndex][path.label]
+
   return (
-    <form>
-      {Object.entries(data).map(([title, fields]) => (
-        <Section
-          key={title}
-          title={title}
-          fields={fields}
-          handleChange={handleChange}
+    <div>
+      <label>
+        {label}
+        <input
+          type="text"
+          placeholder={initial}
+          onChange={(e) =>
+            handleChange(e.target.value === '' ? initial : e.target.value, {
+              ...path,
+            })
+          }
         />
-      ))}
-    </form>
+      </label>
+    </div>
   )
 }
