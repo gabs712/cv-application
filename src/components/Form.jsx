@@ -2,16 +2,18 @@ import initialData from '../data/initialCvInfo'
 
 export default function Form({ data, handleChange }) {
   return (
-    <form>
-      {Object.entries(data).map(([title, fields]) => (
-        <Section
-          key={title}
-          title={title}
-          fields={fields}
-          handleChange={handleChange}
-        />
-      ))}
-    </form>
+    <div>
+      <form>
+        {Object.entries(data).map(([title, fields]) => (
+          <Section
+            key={title}
+            title={title}
+            fields={fields}
+            handleChange={handleChange}
+          />
+        ))}
+      </form>
+    </div>
   )
 }
 
