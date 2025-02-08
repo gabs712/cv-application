@@ -1,7 +1,6 @@
 export default {
   generalInfo: [
     {
-      id: 0,
       name: 'Josh Torvalds',
       email: 'josh.dev@gmail.com',
       phone: '+16 9503 1239 9021',
@@ -9,19 +8,16 @@ export default {
   ],
   education: [
     {
-      id: 0,
       school: 'Harvard University',
       formation: 'Bachelors in Computer Science',
       timePeriod: '02/2017 - 03/2022',
     },
     {
-      id: 1,
       school: 'MIT',
       formation: 'Masters in Software Engineering',
       timePeriod: '09/2022 - 06/2024',
     },
     {
-      id: 2,
       school: 'Stanford University',
       formation: 'Advanced Web Development Certification',
       timePeriod: '07/2024 - 12/2024',
@@ -29,7 +25,6 @@ export default {
   ],
   experience: [
     {
-      id: 0,
       company: 'Microsoft',
       position: 'Front-end Developer',
       timePeriod: '06/2023 - present',
@@ -38,7 +33,6 @@ export default {
         'Developed and maintained responsive user interfaces, optimized performance, collaborated with designers and backend developers, implemented accessibility best practices, conducted code reviews, and ensured seamless user experiences using modern web technologies. ',
     },
     {
-      id: 1,
       company: 'Google',
       position: 'UI Engineer',
       timePeriod: '04/2022 - 05/2023',
@@ -47,7 +41,6 @@ export default {
         'Designed and developed scalable UI components, improved application performance, worked closely with UX designers, and implemented front-end best practices to enhance user experience.',
     },
     {
-      id: 2,
       company: 'Amazon',
       position: 'Web Developer Intern',
       timePeriod: '06/2021 - 09/2021',
