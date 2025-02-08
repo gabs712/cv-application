@@ -6,9 +6,16 @@ import Form from './Form'
 export default function CvBuilder() {
   const [data, updateData] = useImmer(initialData)
 
+  function handleChange(newValue, { title, fieldIndex, label }) {
+    updateData((draft) => {
+      console.log(title)
+      draft[title][fieldIndex][label] = newValue
+    })
+  }
+
   return (
     <main className="grid">
-      <Form {...{ data, updateData, initialData }} />
+      <Form {...{ data, handleChange }} />
       <Cv data={data} />
     </main>
   )
