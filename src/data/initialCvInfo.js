@@ -1,7 +1,12 @@
 export default {
-  name: 'Josh Torvalds',
-  email: 'josh.dev@gmail.com',
-  phone: '+16 9503 1239 9021',
+  generalInfo: [
+    {
+      id: 0,
+      name: 'Josh Torvalds',
+      email: 'josh.dev@gmail.com',
+      phone: '+16 9503 1239 9021',
+    },
+  ],
   education: [
     {
       id: 0,
