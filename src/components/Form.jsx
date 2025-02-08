@@ -22,18 +22,20 @@ function Section({ title, fields, handleChange }) {
         {title}
       </h2>
 
-      {fields.map((field, fieldIndex) => {
-        return Object.entries(field)
-          .filter(([label]) => label !== 'id')
-          .map(([label]) => (
-            <Field
-              key={label}
-              label={label}
-              path={{ title, fieldIndex, label }}
-              handleChange={handleChange}
-            />
-          ))
-      })}
+      <div>
+        {fields.map((field, fieldIndex) => {
+          return Object.entries(field)
+            .filter(([label]) => label !== 'id')
+            .map(([label]) => (
+              <Field
+                key={label}
+                label={label}
+                path={{ title, fieldIndex, label }}
+                handleChange={handleChange}
+              />
+            ))
+        })}
+      </div>
     </div>
   )
 }
