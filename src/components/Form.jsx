@@ -8,11 +8,11 @@ export default function Form({ data, handleChange }) {
   return (
     <div>
       <form className="mx-3 my-10 grid gap-4 rounded-lg bg-white px-4 py-4 shadow">
-        {Object.entries(data).map(([title, fields]) => (
+        {Object.entries(data).map(([title, groups]) => (
           <Section
             key={title}
             title={title}
-            fields={fields}
+            groups={groups}
             handleChange={handleChange}
           />
         ))}
@@ -21,7 +21,7 @@ export default function Form({ data, handleChange }) {
   )
 }
 
-function Section({ title, fields, handleChange }) {
+function Section({ title, groups, handleChange }) {
   const formatedTitle = beautifyString(title)
 
   return (
@@ -34,10 +34,10 @@ function Section({ title, fields, handleChange }) {
       </div>
 
       <div className="space-y-1">
-        {fields.map((field, fieldIndex) => (
+        {groups.map((fields, fieldIndex) => (
           <FieldGroup
             key={fieldIndex}
-            {...{ field, fieldIndex, handleChange, title }}
+            {...{ fields, fieldIndex, handleChange, title }}
           />
         ))}
       </div>
@@ -45,10 +45,10 @@ function Section({ title, fields, handleChange }) {
   )
 }
 
-function FieldGroup({ field, fieldIndex, title, handleChange }) {
+function FieldGroup({ fields, fieldIndex, title, handleChange }) {
   return (
     <div className="space-y-1">
-      {Object.entries(field).map(([label]) => (
+      {Object.entries(fields).map(([label]) => (
         <Field
           key={label}
           label={label}
