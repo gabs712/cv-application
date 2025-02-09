@@ -1,5 +1,6 @@
 import initialData from '../data/initialCvInfo'
 import beautifyString from '../utils/beautifyString'
+import getInputType from '../utils/getInputType'
 import getTitleIcon from '../utils/getTitleIcon'
 import Icon from '@mdi/react'
 
@@ -25,7 +26,7 @@ function Section({ title, fields, handleChange }) {
 
   return (
     <div>
-      <div className="flex gap-1 items-center">
+      <div className="flex items-center gap-1">
         <Icon path={getTitleIcon(title)} size={0.8} />
         <h2 className="mb-1 text-lg font-semibold tracking-wide" key={title}>
           {formatedTitle}
@@ -56,20 +57,27 @@ function Field({ label, path, handleChange }) {
   const initial = initialData[path.title][path.fieldIndex][path.label]
   const formatedLabel = beautifyString(label)
 
+  const inputProps = {
+    className: 'w-full rounded-sm bg-slate-200 px-2 py-1.5 text-sm',
+    placeholder: initial,
+    onChange: (e) =>
+      handleChange(e.target.value === '' ? initial : e.target.value, {
+        ...path,
+      }),
+  }
+
   return (
     <div>
       <label className="space-y-1">
         <p>{formatedLabel}</p>
-        <input
-          className="w-full rounded-sm bg-slate-200 px-2 py-1.5 text-sm"
-          type="text"
-          placeholder={initial}
-          onChange={(e) =>
-            handleChange(e.target.value === '' ? initial : e.target.value, {
-              ...path,
-            })
-          }
-        />
+        {label === 'description' ? (
+          <textarea
+            {...inputProps}
+            className={`${inputProps.className} min-h-[3.5lh]`}
+          ></textarea>
+        ) : (
+          <input {...inputProps} type={getInputType(label)} />
+        )}
       </label>
     </div>
   )
