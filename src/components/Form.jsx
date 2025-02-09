@@ -35,6 +35,7 @@ function Section({ title, groups, handleChange }) {
   return (
     <div>
       <button
+        aria-expanded={`${isClosed ? false : true}`}
         type="button"
         className="flex w-full items-center justify-between px-3 shadow"
         onClick={toggleClose}
