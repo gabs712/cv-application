@@ -4,7 +4,7 @@ import beautifyString from '../utils/beautifyString'
 import getInputType from '../utils/getInputType'
 import getTitleIcon from '../utils/getTitleIcon'
 import Icon from '@mdi/react'
-import { mdiMenuDown, mdiMenuUp } from '@mdi/js'
+import { mdiMenuDown } from '@mdi/js'
 
 export default function Form({ data, handleChange }) {
   return (
@@ -36,7 +36,7 @@ function Section({ title, groups, handleChange }) {
     <div>
       <button
         type="button"
-        className="flex w-full items-center justify-between shadow px-3"
+        className="flex w-full items-center justify-between px-3 shadow"
         onClick={toggleClose}
       >
         <div className="flex items-center gap-2">
@@ -45,12 +45,14 @@ function Section({ title, groups, handleChange }) {
             {formatedTitle}
           </h2>
         </div>
-        <div>
-          <Icon path={isClosed ? mdiMenuDown : mdiMenuUp} size={2} />
+        <div
+          className={`${isClosed ? '' : 'rotate-180'} transition-transform duration-300 ease-out`}
+        >
+          <Icon path={mdiMenuDown} size={2} />
         </div>
       </button>
 
-      <div className={`space-y-1 px-5 py-3 ${isClosed ? 'hidden' : ''}`}>
+      <div className={`${isClosed ? 'hidden' : ''} space-y-1 px-5 py-3`}>
         {groups.map((fields, fieldIndex) => (
           <FieldGroup
             key={fieldIndex}
