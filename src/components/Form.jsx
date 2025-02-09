@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import initialData from '../data/initialCvInfo'
 import beautifyString from '../utils/beautifyString'
 import getInputType from '../utils/getInputType'
 import getTitleIcon from '../utils/getTitleIcon'
 import Icon from '@mdi/react'
+import { mdiMenuDown, mdiMenuUp } from '@mdi/js'
 
 export default function Form({ data, handleChange }) {
   return (
@@ -22,18 +24,33 @@ export default function Form({ data, handleChange }) {
 }
 
 function Section({ title, groups, handleChange }) {
+  const [isClosed, setIsClosed] = useState(title !== 'generalInfo')
+
+  function toggleClose() {
+    setIsClosed(!isClosed)
+  }
+
   const formatedTitle = beautifyString(title)
 
   return (
     <div>
-      <div className="flex items-center gap-1">
-        <Icon path={getTitleIcon(title)} size={0.8} />
-        <h2 className="mb-1 text-lg font-semibold tracking-wide" key={title}>
-          {formatedTitle}
-        </h2>
-      </div>
+      <button
+        type="button"
+        className="flex w-full items-center justify-between shadow px-3"
+        onClick={toggleClose}
+      >
+        <div className="flex items-center gap-2">
+          <Icon path={getTitleIcon(title)} size={0.8} />
+          <h2 className="mb-1 text-lg font-semibold tracking-wide" key={title}>
+            {formatedTitle}
+          </h2>
+        </div>
+        <div>
+          <Icon path={isClosed ? mdiMenuDown : mdiMenuUp} size={2} />
+        </div>
+      </button>
 
-      <div className="space-y-1">
+      <div className={`space-y-1 px-5 py-3 ${isClosed ? 'hidden' : ''}`}>
         {groups.map((fields, fieldIndex) => (
           <FieldGroup
             key={fieldIndex}
