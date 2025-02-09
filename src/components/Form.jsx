@@ -1,4 +1,5 @@
 import initialData from '../data/initialCvInfo'
+import beautifyString from '../utils/beautifyString'
 
 export default function Form({ data, handleChange }) {
   return (
@@ -18,10 +19,12 @@ export default function Form({ data, handleChange }) {
 }
 
 function Section({ title, fields, handleChange }) {
+  const formatedTitle = beautifyString(title)
+
   return (
     <div>
       <h2 className="font-bold" key={title}>
-        {title}
+        {formatedTitle}
       </h2>
 
       <div>
