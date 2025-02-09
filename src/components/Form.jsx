@@ -4,7 +4,7 @@ import beautifyString from '../utils/beautifyString'
 export default function Form({ data, handleChange }) {
   return (
     <div>
-      <form>
+      <form className="mx-3 my-10 grid gap-4 rounded-lg bg-white px-4 py-4 shadow">
         {Object.entries(data).map(([title, fields]) => (
           <Section
             key={title}
@@ -23,20 +23,24 @@ function Section({ title, fields, handleChange }) {
 
   return (
     <div>
-      <h2 className="font-bold" key={title}>
+      <h2 className="mb-1 text-lg font-semibold tracking-wide" key={title}>
         {formatedTitle}
       </h2>
 
       <div>
         {fields.map((field, fieldIndex) => {
-          return Object.entries(field).map(([label]) => (
-            <Field
-              key={label}
-              label={label}
-              path={{ title, fieldIndex, label }}
-              handleChange={handleChange}
-            />
-          ))
+          return (
+            <div className="space-y-1" key={fieldIndex}>
+              {Object.entries(field).map(([label]) => (
+                <Field
+                  key={label}
+                  label={label}
+                  path={{ title, fieldIndex, label }}
+                  handleChange={handleChange}
+                />
+              ))}
+            </div>
+          )
         })}
       </div>
     </div>
@@ -45,12 +49,14 @@ function Section({ title, fields, handleChange }) {
 
 function Field({ label, path, handleChange }) {
   const initial = initialData[path.title][path.fieldIndex][path.label]
+  const formatedLabel = beautifyString(label)
 
   return (
     <div>
-      <label>
-        {label}
+      <label className="space-y-1">
+        <p>{formatedLabel}</p>
         <input
+          className="w-full rounded-sm bg-slate-200 px-2 py-1.5 text-sm"
           type="text"
           placeholder={initial}
           onChange={(e) =>
