@@ -1,5 +1,7 @@
 import initialData from '../data/initialCvInfo'
 import beautifyString from '../utils/beautifyString'
+import getTitleIcon from '../utils/getTitleIcon'
+import Icon from '@mdi/react'
 
 export default function Form({ data, handleChange }) {
   return (
@@ -23,9 +25,12 @@ function Section({ title, fields, handleChange }) {
 
   return (
     <div>
-      <h2 className="mb-1 text-lg font-semibold tracking-wide" key={title}>
-        {formatedTitle}
-      </h2>
+      <div className="flex gap-1 items-center">
+        <Icon path={getTitleIcon(title)} size={0.8} />
+        <h2 className="mb-1 text-lg font-semibold tracking-wide" key={title}>
+          {formatedTitle}
+        </h2>
+      </div>
 
       <div>
         {fields.map((field, fieldIndex) => {
