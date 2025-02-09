@@ -33,22 +33,29 @@ function Section({ title, fields, handleChange }) {
         </h2>
       </div>
 
-      <div>
-        {fields.map((field, fieldIndex) => {
-          return (
-            <div className="space-y-1" key={fieldIndex}>
-              {Object.entries(field).map(([label]) => (
-                <Field
-                  key={label}
-                  label={label}
-                  path={{ title, fieldIndex, label }}
-                  handleChange={handleChange}
-                />
-              ))}
-            </div>
-          )
-        })}
+      <div className="space-y-1">
+        {fields.map((field, fieldIndex) => (
+          <FieldGroup
+            key={fieldIndex}
+            {...{ field, fieldIndex, handleChange, title }}
+          />
+        ))}
       </div>
+    </div>
+  )
+}
+
+function FieldGroup({ field, fieldIndex, title, handleChange }) {
+  return (
+    <div className="space-y-1">
+      {Object.entries(field).map(([label]) => (
+        <Field
+          key={label}
+          label={label}
+          path={{ title, fieldIndex, label }}
+          handleChange={handleChange}
+        />
+      ))}
     </div>
   )
 }
