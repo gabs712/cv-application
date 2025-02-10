@@ -9,7 +9,7 @@ import { mdiMenuDown } from '@mdi/js'
 export default function Form({ data, handleChange }) {
   return (
     <div>
-      <form className="mx-3 my-10 grid gap-4 rounded-lg bg-white px-4 py-4 shadow">
+      <form className="mx-3 my-10 grid gap-4 rounded-lg bg-slate-50 px-4 py-4 shadow">
         {Object.entries(data).map(([title, groups]) => (
           <Section
             key={title}
@@ -33,7 +33,7 @@ function Section({ title, groups, handleChange }) {
   const formatedTitle = beautifyString(title)
 
   return (
-    <div>
+    <div className="bg-white">
       <button
         aria-expanded={`${isClosed ? false : true}`}
         type="button"
@@ -53,7 +53,9 @@ function Section({ title, groups, handleChange }) {
         </div>
       </button>
 
-      <div className={`${isClosed ? 'hidden' : ''} space-y-1 px-5 py-3`}>
+      <div
+        className={`${isClosed ? 'hidden' : ''} bg-slate-100 space-y-5 px-5 py-3`}
+      >
         {groups.map((fields, fieldIndex) => (
           <FieldGroup
             key={fieldIndex}
@@ -67,7 +69,7 @@ function Section({ title, groups, handleChange }) {
 
 function FieldGroup({ fields, fieldIndex, title, handleChange }) {
   return (
-    <div className="space-y-1">
+    <div className="space-y-1 px-5 bg-white py-3 shadow-md">
       {Object.entries(fields).map(([label]) => (
         <Field
           key={label}
