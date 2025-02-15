@@ -8,7 +8,6 @@ export default function CvBuilder() {
 
   function handleChange(newValue, { title, fieldIndex, label }) {
     updateData((draft) => {
-      console.log(title)
       draft[title][fieldIndex][label] = newValue
     })
   }
